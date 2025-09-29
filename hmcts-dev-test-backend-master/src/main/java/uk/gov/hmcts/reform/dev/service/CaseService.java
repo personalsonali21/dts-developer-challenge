@@ -1,11 +1,14 @@
 package uk.gov.hmcts.reform.dev.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import uk.gov.hmcts.reform.dev.dao.TaskDetailsDao;
@@ -57,5 +60,9 @@ public class CaseService {
 	}
 	public void deleteTaskById(Long id) {
 		taskDao.deleteTaskById(id);
+	}
+
+	public int create(String title, String description, String status, String dueDate) {
+		return taskDao.createTaskDetails(title, description, status, dueDate);
 	}
 }

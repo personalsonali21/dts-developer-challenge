@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class TaskDetails {
 
     private int id;
-    private String caseNumber;
     private String title;
     private String description;
     private String status;
@@ -15,11 +14,19 @@ public class TaskDetails {
     	
     }
     
-	public TaskDetails(int id, String caseNumber, String title, String description, String status,
+	public TaskDetails(int id, String title, String description, String status,
 			LocalDateTime createdDate) {
 		super();
 		this.id = id;
-		this.caseNumber = caseNumber;
+		this.title = title;
+		this.description = description;
+		this.status = status;
+		this.dueDate = createdDate;
+	}
+	
+	public TaskDetails( String title, String description, String status,
+			LocalDateTime createdDate) {
+		super();
 		this.title = title;
 		this.description = description;
 		this.status = status;
@@ -32,14 +39,6 @@ public class TaskDetails {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getCaseNumber() {
-		return caseNumber;
-	}
-
-	public void setCaseNumber(String caseNumber) {
-		this.caseNumber = caseNumber;
 	}
 
 	public String getTitle() {

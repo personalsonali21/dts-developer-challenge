@@ -87,4 +87,16 @@ public class TaskDetailsDaoImpl implements TaskDetailsDao{
         params.put("status", status);
         template.update(sql, params);
     }
+
+	@Override
+	public int createTaskDetails(String title, String description, String status, String dueDate) {
+		String sql = "INSERT INTO tasks (title, description, status, due_date) " +
+                "VALUES (:title, :description, :status, :due_date)";
+        Map<String, Object> params = new HashMap<>();
+        params.put("title", title);
+        params.put("status", status);
+        params.put("description", description);
+        params.put("due_date", dueDate);
+        return template.update(sql, params);
+	}
 }

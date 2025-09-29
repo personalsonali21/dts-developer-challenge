@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,6 +46,13 @@ public class CaseController {
 	@GetMapping
 	public List<TaskDetails> getTasks() throws TaskNotFoundException {
 		return service.fetchAllTasks();
+	}
+	
+	@PostMapping
+	public ResponseEntity<String>  createTasks(@RequestParam("title") String title, @RequestParam("description") String description, 
+			@RequestParam("status") String status, @RequestParam("dueDate") String dueDate) throws TaskNotFoundException {
+		service.create(title, description, status, dueDate);
+		return ResponseEntity.ok("Task created successfully");
 	}
 
 	@PutMapping("/{id}")
