@@ -1,0 +1,23 @@
+<% include('layout', { body: (function(){ %>
+  <h2>Edit task</h2>
+  <% if (errors && errors.length) { %>
+    <ul class="errors">
+      <% errors.forEach(function(e){ %>
+        <li><%= e.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <form method="POST" action="/tasks/<%= values.id %>/edit">
+    <label>Title<br><input name="title" value="<%= values.title || '' %>"/></label><br>
+    <label>Description<br><textarea name="description"><%= values.description || '' %></textarea></label><br>
+    <label>Status<br>
+      <select name="status">
+        <option value="PENDING" <%= values.status==='PENDING'? 'selected':''%>>PENDING</option>
+        <option value="IN-PROGRESS" <%= values.status==='IN-PROGRESS'? 'selected':''%>>IN PROGRESS</option>
+        <option value="DONE" <%= values.status==='DONE'? 'selected':''%>>DONE</option>
+      </select>
+    </label><br>
+    <label>Due date/time<br><input type="datetime-local" name="dueDate" value="<%= values.dueDate ? (new Date(values.dueDate)).toISOString().slice(0,16) : '' %>"/></label><br>
+    <button type="submit">Save</button>
+  </form>
+<% }).call(this) }) %>

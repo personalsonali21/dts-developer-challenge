@@ -1,0 +1,26 @@
+<% include('layout', { body: (function(){ %>
+  <h2>All tasks</h2>
+  <table style="width:100%" border="1px">
+  <% if (tasks && tasks.length) { %>
+    <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Due Date</th>
+        <th>Description</th>  
+        </tr>
+      <% tasks.forEach(function(t){ %>
+        <tr>
+            <td><a href="/tasks/<%= t.id %>"><strong><%= t.title %></strong></a></td>
+          <td>  <%= t.status %></td>
+         
+          <td><% if (t.dueDate) { %> <%= new Date(t.dueDate).toLocaleString() %><% } %></td>
+          <td>  <%= t.description %></td>
+        </tr>
+      <% }) %>
+    
+  <% } else { %>
+    <p>No tasks found.</p>
+  <% } %>
+<% }).call(this) }) %>
+
+<nav><a href="/tasks/new">Create task</a></nav>

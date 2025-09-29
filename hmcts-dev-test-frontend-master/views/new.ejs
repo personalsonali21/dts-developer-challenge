@@ -1,0 +1,23 @@
+<% include('layout', { body: (function(){ %>
+  <h2>Create task</h2>
+  <% if (errors && errors.length) { %>
+    <ul class="errors">
+      <% errors.forEach(function(e){ %>
+        <li><%= e.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <form method="POST" action="/tasks">
+    <label>Title<br><input name="title" value="<%= values.title || '' %>"/></label><br>
+    <label>Description<br><textarea name="description"><%= values.description || '' %></textarea></label><br>
+    <label>Status<br>
+      <select name="status">
+        <option value="todo" <%= values.status==='todo'? 'selected':''%>>Todo</option>
+        <option value="in-progress" <%= values.status==='in-progress'? 'selected':''%>>In Progress</option>
+        <option value="done" <%= values.status==='done'? 'selected':''%>>Done</option>
+      </select>
+    </label><br>
+    <label>Due date/time<br><input type="datetime-local" name="dueDate" value="<%= values.dueDate || '' %>"/></label><br>
+    <button type="submit">Create</button>
+  </form>
+<% }).call(this) }) %>

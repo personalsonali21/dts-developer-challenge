@@ -1,0 +1,8 @@
+
+<% include('layout', { body: (function(){ %>
+  <h2>Error</h2>
+  <p><%= message %></p>
+  <% if (error && error.status) { %>
+    <pre><%= error.status %> - <%= JSON.stringify(error.body || error, null, 2) %></pre>
+  <% } %>
+<% }).call(this) }) %>

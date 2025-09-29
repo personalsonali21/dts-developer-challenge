@@ -1,0 +1,8 @@
+body { font-family: Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+table, th, td {
+  border: 1px solid black;
+}
+header { display:flex; justify-content:space-between; align-items:center; }
+.tasks { list-style:none; padding-left:0 }
+.tasks li { padding:0.4rem 0; border-bottom:1px #eee solid }
+.errors { color: red }

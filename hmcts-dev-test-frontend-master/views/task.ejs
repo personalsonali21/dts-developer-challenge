@@ -1,0 +1,27 @@
+
+<% include('layout', { body: (function(){ %>
+  <h2><%= task.title %></h2>
+  <p><%= task.description || '(no description)' %></p>
+  <p>Status: <strong><%= task.status %></strong></p>
+  <% if (task.dueDate) { %>
+    <p>Due: <%= new Date(task.dueDate).toLocaleString() %></p>
+  <% } %>
+
+  <form method="POST" action="/tasks/<%= task.id %>/status">
+    <label>Change status:
+      <select name="status">
+        <option value="todo" <%= task.status==='todo' ? 'selected' : ''%>>Todo</option>
+        <option value="in-progress" <%= task.status==='in-progress' ? 'selected' : ''%>>In Progress</option>
+        <option value="done" <%= task.status==='done' ? 'selected' : ''%>>Done</option>
+      </select>
+    </label>
+    <button type="submit">Update status</button>
+  </form>
+
+  <p>
+    <a href="/tasks/<%= task.id %>/edit">Edit</a> |
+    <form method="POST" action="/tasks/<%= task.id %>/delete" style="display:inline" onsubmit="return confirm('Delete this task?')">
+      <button type="submit">Delete</button>
+    </form>
+  </p>
+<% }).call(this) }) %>
